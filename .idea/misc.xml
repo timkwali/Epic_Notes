@@ -3,7 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/calendar_icon_selector.xml" value="0.26481481481481484" />
+        <entry key="app/src/main/res/drawable/checkbox_selector.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/drawable/cyan_bg.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/drawable/green_bg.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/drawable/home_icon_selector.xml" value="0.26481481481481484" />
+        <entry key="app/src/main/res/drawable/ic_round_add_24.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/drawable/ic_round_add_circle_24.xml" value="0.26481481481481484" />
+        <entry key="app/src/main/res/drawable/ic_round_add_circle_50.xml" value="0.26481481481481484" />
+        <entry key="app/src/main/res/drawable/ic_round_check_circle_24.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/drawable/orange_bg.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/drawable/pink_bg.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/drawable/red_bg.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/drawable/task_item_text_bg.xml" value="0.29259259259259257" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2682291666666667" />
+        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2682291666666667" />
+        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_new_note.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/notes_item.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.28229166666666666" />
       </map>
     </option>
   </component>
