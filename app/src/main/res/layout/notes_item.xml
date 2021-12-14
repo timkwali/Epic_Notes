@@ -9,14 +9,14 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="20dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginVertical="5dp"
             android:layout_marginStart="10dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +43,7 @@
                     android:id="@+id/task_cb"
                     style="@style/checkbox"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:paddingStart="10dp"
