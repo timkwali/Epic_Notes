@@ -9,8 +9,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginTop="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -47,6 +46,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:paddingStart="10dp"
+                    android:enabled="false"
                     android:text="@string/this_is_a_task_sample"
                     android:textColor="@color/text"
                     android:fontFamily="@font/dmsans_regular"

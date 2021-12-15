@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="round_image_black_bg">
+        <item name="cornerSize">50%</item>
+        <item name="backgroundColor">@color/text</item>
+        <item name="android:strokeWidth">1</item>
+        <item name="android:strokeColor">@color/text</item>
+    </style>
+</resources>

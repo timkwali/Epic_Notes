@@ -13,7 +13,9 @@ import com.timkwali.epicnotes.databinding.FragmentHomeBinding
 import com.timkwali.epicnotes.domain.model.Task
 import com.timkwali.epicnotes.presentation.adapter.TasksRvAdapter
 import com.timkwali.epicnotes.presentation.utils.ClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(), ClickListener<Task> {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var tasksRvAdapter: TasksRvAdapter
@@ -38,14 +40,14 @@ class HomeFragment : Fragment(), ClickListener<Task> {
 
     private fun getList(): List<Task> {
         return listOf(
-            Task("Work", "High", "Create Wireframes", "10:00PM"),
-            Task("Family", "Medium", "Create Wireframes", "10:00PM"),
-            Task("School", "Low", "Create Wireframes", "10:00PM"),
-            Task("Work", "High", "Create Wireframes", "10:00PM"),
-            Task("Work", "High", "Create Wireframes", "10:00PM"),
-            Task("Work", "High", "Create Wireframes", "10:00PM"),
-            Task("Work", "High", "Create Wireframes", "10:00PM"),
-            Task("Work", "High", "Create Wireframes", "10:00PM"),
+            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
+            Task(1, "Family", "Medium", "Create Wireframes", "10:00PM", "24/02/2031", false),
+            Task(1, "School", "Low", "Create Wireframes", "10:00PM", "24/02/2031", false),
+            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
+            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
+            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
+            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
+            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
         )
     }
 

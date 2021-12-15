@@ -10,6 +10,6 @@
         android:label="MainFragment" />
     <fragment
         android:id="@+id/newNoteFragment"
-        android:name="com.timkwali.epicnotes.presentation.ui.newnote.NewNoteFragment"
+        android:name="com.timkwali.epicnotes.presentation.ui.newtask.NewTaskFragment"
         android:label="NewNoteFragment" />
 </navigation>

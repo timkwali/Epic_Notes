@@ -6,7 +6,7 @@
     <data>
         <variable
             name="newNoteFragment"
-            type="com.timkwali.epicnotes.presentation.ui.newnote.NewNoteFragment" />
+            type="com.timkwali.epicnotes.presentation.ui.newtask.NewTaskFragment" />
         <variable
             name="bindingUtils"
             type="com.timkwali.epicnotes.presentation.utils.BindingUtils" />
