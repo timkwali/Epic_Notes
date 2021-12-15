@@ -35,6 +35,18 @@ class NewTaskFragment : Fragment() {
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         setupToolbar(toolbar)
         setHasOptionsMenu(true)
+
+        setUpDate()
+        setUpAlarm()
+        setUpReminder()
+        setUpPriority()
+        setUpCategory()
+    }
+
+    private fun setUpDate() {
+        binding.dateTv.setOnClickListener {
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

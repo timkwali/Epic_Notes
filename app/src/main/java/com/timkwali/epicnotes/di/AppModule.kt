@@ -3,6 +3,11 @@ package com.timkwali.epicnotes.di
 import android.app.Application
 import androidx.room.Room
 import com.timkwali.epicnotes.data.localdata.TasksDatabase
+import com.timkwali.epicnotes.data.repository.RepositoryImpl
+import com.timkwali.epicnotes.domain.repository.Repository
+import com.timkwali.epicnotes.domain.usecase.GetAllTasksUseCase
+import com.timkwali.epicnotes.domain.usecase.SaveTaskUseCase
+import com.timkwali.epicnotes.domain.usecase.TaskUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,5 +26,20 @@ object AppModule {
             TasksDatabase::class.java,
             TasksDatabase.DATABASE_NAME
         ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepository(db: TasksDatabase): Repository {
+        return RepositoryImpl(db)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTaskUseCases(repository: Repository): TaskUseCases {
+        return TaskUseCases(
+            getAllTasksUseCase = GetAllTasksUseCase(repository),
+            saveTaskUseCase = SaveTaskUseCase(repository)
+        )
     }
 }

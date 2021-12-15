@@ -15,7 +15,7 @@ class RepositoryImpl @Inject constructor(
         taskDao.saveTask(task)
     }
 
-    override suspend fun getAllTasks(): Flow<List<Task>> {
+    override fun getAllTasks(): Flow<List<Task>> {
         return taskDao.getAllTasks()
     }
 }
