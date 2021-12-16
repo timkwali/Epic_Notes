@@ -17,9 +17,6 @@ class TasksRvAdapter(
 
     inner class TasksViewHolder(var taskItemBinding: NotesItemBinding):
         RecyclerView.ViewHolder(taskItemBinding.root) {
-        fun setClick(task: Task, clickListener: ClickListener<Task>) {
-
-        }
 
         fun bind(task: Task, action: ClickListener<Task>) {
             taskItemBinding.apply {

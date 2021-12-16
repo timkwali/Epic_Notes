@@ -74,6 +74,9 @@ dependencies {
     //Date picker timeline
     implementation 'com.vivekkaushik.datepicker:datePickerTimeline:0.0.1'
 
-//    //Sectioned Recycler view
-//    implementation 'com.github.IntruderShanky:Sectioned-RecyclerView:2.1.1'
+    //Sectioned Recycler view
+    implementation 'com.github.IntruderShanky:Sectioned-RecyclerView:2.1.1'
+
+    //afollestad Sectioned Recycler view
+    implementation 'com.afollestad:sectioned-recyclerview:0.2.3'
 }

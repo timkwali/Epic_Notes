@@ -1,4 +1,4 @@
-package com.timkwali.epicnotes.presentation.adapter
+package com.timkwali.epicnotes.presentation.utils
 
 import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper

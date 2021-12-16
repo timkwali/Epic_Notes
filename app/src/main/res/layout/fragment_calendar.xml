@@ -41,7 +41,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.vivekkaushik.datepicker.DatePickerTimeline
-                    android:id="@+id/datePickerTimeline"
+                    android:id="@+id/calendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -53,15 +53,37 @@
                     app:layout_constraintTop_toBottomOf="@id/calendar_tv"
                     app:monthTextColor="@color/text" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <TextView
+                    android:id="@+id/no_tasks_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/there_are_no_pending_tasks_on_this_day"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="10dp"
+                    android:enabled="false"
+                    android:visibility="gone"
+                    android:textColor="@color/text"
+                    android:fontFamily="@font/dmsans_regular"
+                    android:layout_marginHorizontal="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/datePickerTimeline" />
+                    app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/calendar_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calendar" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.appcompat.widget.LinearLayoutCompat>

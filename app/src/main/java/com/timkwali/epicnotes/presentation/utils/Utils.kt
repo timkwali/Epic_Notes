@@ -1,6 +1,7 @@
 package com.timkwali.epicnotes.presentation.utils
 
 import android.os.Build
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -24,17 +25,18 @@ object Utils {
             val selectedDate = it
             val c = Calendar.getInstance()
             val today = SimpleDateFormat("dd-MM-yyyy")
-                .parse("${c.get(Calendar.DAY_OF_MONTH)}-${c.get(Calendar.MONTH + 1)}-${c.get(Calendar.YEAR)}")
+                .parse("${c.get(Calendar.DAY_OF_MONTH)}-${c.get(Calendar.MONTH)}-${c.get(Calendar.YEAR)}")
                 .time
 
-//            if(selectedDate < today) {
-//                textView.findFragment<Fragment>().showSnackBar("Please select a valid date!")
-//            } else {
+            if(selectedDate < today) {
+                textView.findFragment<Fragment>().showSnackBar("Please select a valid date!")
+            } else {
                 val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
                 calendar.time = Date(selectedDate)
                 textView.text = "${calendar.get(Calendar.DAY_OF_MONTH)}-" +
                         "${calendar.get(Calendar.MONTH + 1)}-${calendar.get(Calendar.YEAR)}"
-//            }
+            }
+            Log.d("sdjkfa", "selected -> $selectedDate \ntoday-> $today")
         }
         picker.show(fragmentManager, tag)
     }
