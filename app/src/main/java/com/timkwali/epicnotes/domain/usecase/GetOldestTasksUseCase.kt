@@ -27,7 +27,7 @@ class GetOldestTasksUseCase @Inject constructor(
             dates = dates.distinct().toMutableList()
             dates.sort()
             for(task in allTasks) {
-                if(Utils.dateToTimeStamp(task.date) == dates.last()) {
+                if(Utils.dateToTimeStamp(task.date) == dates[0]) {
                     finalList.add(task)
                 }
             }
