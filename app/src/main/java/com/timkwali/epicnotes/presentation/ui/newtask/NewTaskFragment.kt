@@ -3,6 +3,7 @@ package com.timkwali.epicnotes.presentation.ui.newtask
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -17,6 +18,7 @@ import com.timkwali.epicnotes.databinding.FragmentNewTaskBinding
 import com.timkwali.epicnotes.domain.model.Task
 import com.timkwali.epicnotes.presentation.utils.Utils
 import com.timkwali.epicnotes.presentation.utils.Utils.showSnackBar
+import com.timkwali.epicnotes.presentation.utils.Utils.showTimePicker
 import com.timkwali.epicnotes.presentation.viewmodel.TasksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,6 +44,8 @@ class NewTaskFragment : Fragment() {
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         setupToolbar(toolbar)
         setHasOptionsMenu(true)
+        setUpDate()
+        setUpAlarm()
         binding.apply {
             lowBtn.setOnClickListener { setUpPriority(lowBtn) }
             mediumBtn.setOnClickListener { setUpPriority(mediumBtn) }
@@ -50,20 +54,19 @@ class NewTaskFragment : Fragment() {
             schoolBtn.setOnClickListener { setUpCategory(schoolBtn) }
             familyBtn.setOnClickListener { setUpCategory(familyBtn) }
         }
-        setUpDate()
-        setUpAlarm()
     }
 
     private fun setUpDate() {
         binding.dateTv.setOnClickListener {
-            Utils.showDatePicker(
-                parentFragmentManager,
-                getString(R.string.date)
-            )
+            Utils.showDatePicker(parentFragmentManager, getString(R.string.date), binding.dateTv)
         }
     }
 
-    private fun setUpAlarm() {}
+    private fun setUpAlarm() {
+        binding.alarmTv.setOnClickListener {
+            showTimePicker(parentFragmentManager, getString(R.string.time), binding.alarmTv)
+        }
+    }
 
     private fun resetPriorityButtons() {
         binding.apply {
@@ -76,11 +79,11 @@ class NewTaskFragment : Fragment() {
         }
     }
 
-    private fun setUpPriority(button: Button) {
+    private fun setUpPriority(textView: TextView) {
         resetPriorityButtons()
-        priority = button.text.toString()
-        button.setBackgroundResource(R.drawable.grey_bg)
-        button.setTextColor(resources.getColor(R.color.white))
+        priority = textView.text.toString()
+        textView.setBackgroundResource(R.drawable.grey_bg)
+        textView.setTextColor(resources.getColor(R.color.white))
     }
 
     private fun resetCategoryButtons() {
@@ -94,11 +97,11 @@ class NewTaskFragment : Fragment() {
         }
     }
 
-    private fun setUpCategory(button: Button) {
+    private fun setUpCategory(textView: TextView) {
         resetCategoryButtons()
-        category = button.text.toString()
-        button.setBackgroundResource(R.drawable.grey_bg)
-        button.setTextColor(resources.getColor(R.color.white))
+        category = textView.text.toString()
+        textView.setBackgroundResource(R.drawable.grey_bg)
+        textView.setTextColor(resources.getColor(R.color.white))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

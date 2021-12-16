@@ -196,10 +196,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/priority_tv">
 
-                    <com.google.android.material.button.MaterialButton
+                    <TextView
                         android:id="@+id/low_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="13dp"
+                        android:gravity="center"
                         android:layout_weight="1"
                         android:background="@drawable/green_stroke_bg"
                         android:ellipsize="end"
@@ -212,10 +214,12 @@
                         android:textStyle="bold"
                         android:layout_marginEnd="5dp"/>
 
-                    <com.google.android.material.button.MaterialButton
+                    <TextView
                         android:id="@+id/medium_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="13dp"
+                        android:gravity="center"
                         android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/orange_stroke_bg"
@@ -228,10 +232,12 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <com.google.android.material.button.MaterialButton
+                    <TextView
                         android:id="@+id/high_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="13dp"
+                        android:gravity="center"
                         android:layout_weight="1"
                         android:background="@drawable/red_stroke_bg"
                         android:ellipsize="end"
@@ -272,10 +278,12 @@
                     app:layout_constraintTop_toBottomOf="@id/category_tv"
                     app:layout_constraintVertical_bias="0.0">
 
-                    <com.google.android.material.button.MaterialButton
+                    <TextView
                         android:id="@+id/work_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="13dp"
+                        android:gravity="center"
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/orange_bg"
@@ -288,10 +296,12 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <com.google.android.material.button.MaterialButton
+                    <TextView
                         android:id="@+id/family_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="13dp"
+                        android:gravity="center"
                         android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/cyan_bg"
@@ -304,10 +314,12 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <com.google.android.material.button.MaterialButton
+                    <TextView
                         android:id="@+id/school_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="13dp"
+                        android:gravity="center"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/pink_bg"
