@@ -8,6 +8,7 @@ import com.timkwali.epicnotes.domain.repository.Repository
 import com.timkwali.epicnotes.domain.usecase.GetAllTasksUseCase
 import com.timkwali.epicnotes.domain.usecase.SaveTaskUseCase
 import com.timkwali.epicnotes.domain.usecase.TaskUseCases
+import com.timkwali.epicnotes.domain.usecase.UpdateTaskUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,7 +40,8 @@ object AppModule {
     fun provideTaskUseCases(repository: Repository): TaskUseCases {
         return TaskUseCases(
             getAllTasksUseCase = GetAllTasksUseCase(repository),
-            saveTaskUseCase = SaveTaskUseCase(repository)
+            saveTaskUseCase = SaveTaskUseCase(repository),
+            updateTaskUseCase = UpdateTaskUseCase(repository)
         )
     }
 }

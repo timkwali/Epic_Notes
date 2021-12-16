@@ -7,18 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.timkwali.epicnotes.R
 import com.timkwali.epicnotes.databinding.FragmentHomeBinding
 import com.timkwali.epicnotes.domain.model.Task
+import com.timkwali.epicnotes.presentation.adapter.SwipeCallback
 import com.timkwali.epicnotes.presentation.adapter.TasksRvAdapter
 import com.timkwali.epicnotes.presentation.utils.ClickListener
+import com.timkwali.epicnotes.presentation.utils.Utils.showSnackBar
+import com.timkwali.epicnotes.presentation.viewmodel.TasksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), ClickListener<Task> {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var tasksRvAdapter: TasksRvAdapter
+    private val viewModel: TasksViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,29 +36,36 @@ class HomeFragment : Fragment(), ClickListener<Task> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        tasksRvAdapter = TasksRvAdapter(getList(), this)
         binding.apply {
-            notesRv.layoutManager = LinearLayoutManager(requireContext())
-            notesRv.setHasFixedSize(true)
-            notesRv.adapter = tasksRvAdapter
+            viewModel.allTasks.observe(viewLifecycleOwner, {
+                if(!it.isNullOrEmpty()) {
+                    tasksRvAdapter = TasksRvAdapter(it, this@HomeFragment)
+                    notesRv.layoutManager = LinearLayoutManager(requireContext())
+                    notesRv.setHasFixedSize(true)
+                    notesRv.adapter = tasksRvAdapter
+                    updateTask(ItemTouchHelper.RIGHT)
+                    updateTask(ItemTouchHelper.LEFT)
+                }
+            })
         }
-    }
-
-    private fun getList(): List<Task> {
-        return listOf(
-            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
-            Task(1, "Family", "Medium", "Create Wireframes", "10:00PM", "24/02/2031", false),
-            Task(1, "School", "Low", "Create Wireframes", "10:00PM", "24/02/2031", false),
-            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
-            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
-            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
-            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
-            Task(1, "Work", "High", "Create Wireframes", "10:00PM", "24/02/2031", false),
-        )
     }
 
     override fun onItemClick(item: Task, position: Int) {
         Toast.makeText(requireContext(), item.taskName, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun updateTask(swipeDirection: Int) {
+        val swipeGesture = object : SwipeCallback(swipeDirection) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                super.onSwiped(viewHolder, direction)
+                val task = tasksRvAdapter.getTask(viewHolder.adapterPosition)
+                task.isCompleted = swipeDirection == ItemTouchHelper.RIGHT
+                viewModel.updateTask(task)
+                val message = if(swipeDirection == ItemTouchHelper.RIGHT) "Task completed!" else "Task not completed!"
+                showSnackBar(message)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeGesture)
+        itemTouchHelper.attachToRecyclerView(binding.notesRv)
     }
 }

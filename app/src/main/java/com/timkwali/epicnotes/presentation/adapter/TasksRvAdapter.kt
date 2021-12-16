@@ -28,6 +28,7 @@ class TasksRvAdapter(
                 categoryTv.text = task.category
                 taskCb.text = task.taskName
                 timeTv.text = task.time
+                taskCb.isChecked = task.isCompleted
                 when(task.priority) {
                     context.getString(R.string.high) -> priorityTv.setBackgroundResource(R.drawable.red_bg)
                     context.getString(R.string.medium)  -> priorityTv.setBackgroundResource(R.drawable.orange_bg)
@@ -73,4 +74,8 @@ class TasksRvAdapter(
     }
 
     override fun getItemCount(): Int = tasksList.size
+
+    fun getTask(position: Int): Task {
+        return tasksList[position]
+    }
 }

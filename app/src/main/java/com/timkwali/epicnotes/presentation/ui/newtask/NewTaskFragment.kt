@@ -8,14 +8,22 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.timkwali.epicnotes.R
 import com.timkwali.epicnotes.databinding.FragmentNewTaskBinding
+import com.timkwali.epicnotes.domain.model.Task
+import com.timkwali.epicnotes.presentation.utils.Utils
+import com.timkwali.epicnotes.presentation.viewmodel.TasksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NewTaskFragment : Fragment() {
-   private lateinit var binding: FragmentNewTaskBinding
+    private lateinit var binding: FragmentNewTaskBinding
+    private val viewModel: TasksViewModel by activityViewModels()
+    private val category: String = ""
+    private val priority: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,22 +38,24 @@ class NewTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lowBtn.setOnClickListener {
-            Toast.makeText(requireContext(), "lkfnasjkff", Toast.LENGTH_SHORT).show()
         }
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         setupToolbar(toolbar)
         setHasOptionsMenu(true)
 
         setUpDate()
-        setUpAlarm()
-        setUpReminder()
-        setUpPriority()
-        setUpCategory()
+//        setUpAlarm()
+//        setUpReminder()
+//        setUpPriority()
+//        setUpCategory()
     }
 
     private fun setUpDate() {
         binding.dateTv.setOnClickListener {
-
+            Utils.showDatePicker(
+                parentFragmentManager,
+                getString(R.string.date)
+            )
         }
     }
 
@@ -55,7 +65,7 @@ class NewTaskFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if(item.itemId == R.id.save) {
-            Toast.makeText(requireContext(), "task saved", Toast.LENGTH_SHORT).show()
+            saveTask()
             true
         } else {
             super.onOptionsItemSelected(item)
@@ -72,5 +82,30 @@ class NewTaskFragment : Fragment() {
             toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
         }
         actionBar?.title = ""
+    }
+
+    private fun saveTask() {
+        if(validateForm()) {
+            binding.apply {
+                viewModel.saveTask(
+                    Task(
+                        category = category,
+                        priority = priority,
+                        taskName = taskNameEt.text.toString(),
+                        taskDescription = taskDescriptionEt.text.toString(),
+                        time = alarmTv.text.toString(),
+                        date = dateTv.text.toString(),
+                        isReminderOn = remindSw.isChecked,
+                        isCompleted = false
+                    )
+                )
+            }
+            findNavController().popBackStack()
+            Toast.makeText(requireContext(), "task saved", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun validateForm(): Boolean {
+        if()
     }
 }

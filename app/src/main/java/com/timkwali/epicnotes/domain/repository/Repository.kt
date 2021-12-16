@@ -8,4 +8,6 @@ interface Repository {
     suspend fun saveTask(task: Task)
 
     fun getAllTasks(): Flow<List<Task>>
+
+    suspend fun updateTask(task: Task)
 }
