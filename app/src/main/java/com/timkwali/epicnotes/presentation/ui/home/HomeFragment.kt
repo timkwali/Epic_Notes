@@ -51,7 +51,7 @@ class HomeFragment : Fragment(), ClickListener<Task> {
     }
 
     override fun onItemClick(item: Task, position: Int) {
-        Toast.makeText(requireContext(), item.taskName, Toast.LENGTH_SHORT).show()
+        showSnackBar(item.taskName)
     }
 
     private fun updateTask(swipeDirection: Int) {

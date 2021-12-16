@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/drawable/profile_image_bg.xml" value="0.2814814814814815" />
         <entry key="app/src/main/res/drawable/red_bg.xml" value="0.29259259259259257" />
         <entry key="app/src/main/res/drawable/red_stroke_bg.xml" value="0.2657407407407407" />
+        <entry key="app/src/main/res/drawable/select_bg.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable/task_item_text_bg.xml" value="0.29259259259259257" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2682291666666667" />
         <entry key="app/src/main/res/layout/calendar_body_item.xml" value="0.335" />

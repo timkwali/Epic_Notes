@@ -2,6 +2,7 @@ package com.timkwali.epicnotes.presentation.ui.newtask
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -15,6 +16,7 @@ import com.timkwali.epicnotes.R
 import com.timkwali.epicnotes.databinding.FragmentNewTaskBinding
 import com.timkwali.epicnotes.domain.model.Task
 import com.timkwali.epicnotes.presentation.utils.Utils
+import com.timkwali.epicnotes.presentation.utils.Utils.showSnackBar
 import com.timkwali.epicnotes.presentation.viewmodel.TasksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,8 +24,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class NewTaskFragment : Fragment() {
     private lateinit var binding: FragmentNewTaskBinding
     private val viewModel: TasksViewModel by activityViewModels()
-    private val category: String = ""
-    private val priority: String = ""
+    private var category: String = ""
+    private var priority: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,17 +39,19 @@ class NewTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.lowBtn.setOnClickListener {
-        }
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         setupToolbar(toolbar)
         setHasOptionsMenu(true)
-
+        binding.apply {
+            lowBtn.setOnClickListener { setUpPriority(lowBtn) }
+            mediumBtn.setOnClickListener { setUpPriority(mediumBtn) }
+            highBtn.setOnClickListener { setUpPriority(highBtn) }
+            workBtn.setOnClickListener { setUpCategory(workBtn) }
+            schoolBtn.setOnClickListener { setUpCategory(schoolBtn) }
+            familyBtn.setOnClickListener { setUpCategory(familyBtn) }
+        }
         setUpDate()
-//        setUpAlarm()
-//        setUpReminder()
-//        setUpPriority()
-//        setUpCategory()
+        setUpAlarm()
     }
 
     private fun setUpDate() {
@@ -57,6 +61,44 @@ class NewTaskFragment : Fragment() {
                 getString(R.string.date)
             )
         }
+    }
+
+    private fun setUpAlarm() {}
+
+    private fun resetPriorityButtons() {
+        binding.apply {
+            lowBtn.setBackgroundResource(R.drawable.green_stroke_bg)
+            lowBtn.setTextColor(resources.getColor(R.color.text))
+            mediumBtn.setBackgroundResource(R.drawable.orange_stroke_bg)
+            mediumBtn.setTextColor(resources.getColor(R.color.text))
+            highBtn.setBackgroundResource(R.drawable.red_stroke_bg)
+            highBtn.setTextColor(resources.getColor(R.color.text))
+        }
+    }
+
+    private fun setUpPriority(button: Button) {
+        resetPriorityButtons()
+        priority = button.text.toString()
+        button.setBackgroundResource(R.drawable.grey_bg)
+        button.setTextColor(resources.getColor(R.color.white))
+    }
+
+    private fun resetCategoryButtons() {
+        binding.apply {
+            workBtn.setBackgroundResource(R.drawable.orange_bg)
+            workBtn.setTextColor(resources.getColor(R.color.text))
+            familyBtn.setBackgroundResource(R.drawable.cyan_bg)
+            familyBtn.setTextColor(resources.getColor(R.color.blue))
+            schoolBtn.setBackgroundResource(R.drawable.pink_bg)
+            schoolBtn.setTextColor(resources.getColor(R.color.purple))
+        }
+    }
+
+    private fun setUpCategory(button: Button) {
+        resetCategoryButtons()
+        category = button.text.toString()
+        button.setBackgroundResource(R.drawable.grey_bg)
+        button.setTextColor(resources.getColor(R.color.white))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -101,11 +143,19 @@ class NewTaskFragment : Fragment() {
                 )
             }
             findNavController().popBackStack()
-            Toast.makeText(requireContext(), "task saved", Toast.LENGTH_SHORT).show()
+            showSnackBar("Task saved!")
+        } else {
+            showSnackBar("Please complete the form to continue!")
         }
     }
 
     private fun validateForm(): Boolean {
-        if()
+        binding.apply {
+            return  category.isNotEmpty() && priority.isNotEmpty() &&
+                    taskNameEt.text.toString().trim().isNotEmpty() &&
+                    taskDescriptionEt.text.toString().trim().isNotEmpty() &&
+                    alarmTv.text.toString() != getString(R.string.alarm) &&
+                    dateTv.text.toString() != getString(R.string.date)
+        }
     }
 }
