@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.timkwali.epicnotes.domain.model.Task
 import com.timkwali.epicnotes.domain.usecase.TaskUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,6 +15,8 @@ class TasksViewModel @Inject constructor(
 ): ViewModel() {
 
     val allTasks = taskUseCases.getAllTasksUseCase.invoke().asLiveData()
+
+    val oldestTasks = taskUseCases.getOldestTasksUseCase.invoke().asLiveData()
 
     fun saveTask(task: Task) = viewModelScope.launch {
         taskUseCases.saveTaskUseCase(task)

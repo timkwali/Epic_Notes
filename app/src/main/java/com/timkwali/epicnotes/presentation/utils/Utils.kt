@@ -1,10 +1,8 @@
 package com.timkwali.epicnotes.presentation.utils
 
-import android.os.Build
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.findFragment
@@ -33,8 +31,12 @@ object Utils {
             } else {
                 val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
                 calendar.time = Date(selectedDate)
-                textView.text = "${calendar.get(Calendar.DAY_OF_MONTH)}-" +
-                        "${calendar.get(Calendar.MONTH + 1)}-${calendar.get(Calendar.YEAR)}"
+                var day: String = calendar.get(Calendar.DAY_OF_MONTH).toString()
+                day = if(day.toInt() < 10) "0$day" else day
+                var month: String = calendar.get(Calendar.MONTH).toString()
+                month = if(month.toInt() + 1 < 10) "0${month.toInt() + 1}" else ((month.toInt() + 1).toString())
+                val year = calendar.get(Calendar.YEAR)
+                textView.text = "$day-$month-$year"
             }
             Log.d("sdjkfa", "selected -> $selectedDate \ntoday-> $today")
         }
@@ -79,5 +81,42 @@ object Utils {
         view: View = requireView()
     ) {
         Snackbar.make(view, message, duration).show()
+    }
+
+    fun setUpDate(date: String): String {
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ROOT).parse(date);
+        val day = date.substring(0, 2)
+        var dayOfWeek = when (sdf.day) {
+            0 -> "Sunday"
+            1 -> "Monday"
+            2 -> "Tuesday"
+            3 -> "Wednesday"
+            4 -> "Thursday"
+            5 -> "Friday"
+            6 -> "Saturday"
+            else -> ""
+        }
+        val month = when (date.substring(3, 5)) {
+            "01" -> "January"
+            "02" -> "February"
+            "03" -> "March"
+            "04" -> "April"
+            "05" -> "May"
+            "06" -> "June"
+            "07" -> "July"
+            "08" -> "August"
+            "09" -> "September"
+            "10" -> "October"
+            "11" -> "November"
+            "12" -> "December"
+            else -> ""
+        }
+        val today = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        dayOfWeek = if(today == day.toInt()) "Today" else dayOfWeek
+        return "$dayOfWeek $day, $month"
+    }
+
+    fun dateToTimeStamp(date: String): Long {
+        return SimpleDateFormat("dd-MM-yyyy").parse(date).time
     }
 }

@@ -17,7 +17,8 @@ import com.timkwali.epicnotes.R
 import com.timkwali.epicnotes.databinding.FragmentCalendarBinding
 import com.timkwali.epicnotes.domain.model.Task
 import com.timkwali.epicnotes.presentation.adapter.calendar.CalendarAdapter
-import com.timkwali.epicnotes.presentation.adapter.calendar.TaskSection
+import com.timkwali.epicnotes.presentation.adapter.TaskSection
+import com.timkwali.epicnotes.presentation.utils.Utils.setUpDate
 import com.timkwali.epicnotes.presentation.viewmodel.TasksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -87,38 +88,5 @@ class CalendarFragment : Fragment() {
             )
             calendarRv.adapter = adapter
         }
-    }
-
-    private fun setUpDate(date: String): String {
-        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ROOT).parse(date);
-        val day = date.substring(0, 2)
-        var dayOfWeek = when (sdf.day) {
-            0 -> "Sunday"
-            1 -> "Monday"
-            2 -> "Tuesday"
-            3 -> "Wednesday"
-            4 -> "Thursday"
-            5 -> "Friday"
-            6 -> "Saturday"
-            else -> ""
-        }
-        val month = when (date.substring(3, 5)) {
-            "01" -> "January"
-            "02" -> "February"
-            "03" -> "March"
-            "04" -> "April"
-            "05" -> "May"
-            "06" -> "June"
-            "07" -> "July"
-            "08" -> "August"
-            "09" -> "September"
-            "10" -> "October"
-            "11" -> "November"
-            "12" -> "December"
-            else -> ""
-        }
-        val today = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        dayOfWeek = if(today == day.toInt()) "Today" else dayOfWeek
-        return "$dayOfWeek $day, $month"
     }
 }

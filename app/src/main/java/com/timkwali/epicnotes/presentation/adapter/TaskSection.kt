@@ -1,4 +1,4 @@
-package com.timkwali.epicnotes.presentation.adapter.calendar
+package com.timkwali.epicnotes.presentation.adapter
 
 import com.timkwali.epicnotes.domain.model.Task
 import com.intrusoft.sectionedrecyclerview.Section

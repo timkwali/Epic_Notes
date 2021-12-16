@@ -25,4 +25,5 @@
     <string name="time">Time</string>
     <string name="duration">Duration</string>
     <string name="there_are_no_pending_tasks_on_this_day">There are no pending tasks on this day!</string>
+    <string name="press_the_button_below_to_add_tasks">Press the button below to add tasks!</string>
 </resources>

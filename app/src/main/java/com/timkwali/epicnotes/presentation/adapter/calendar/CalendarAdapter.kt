@@ -8,8 +8,8 @@ import com.intrusoft.sectionedrecyclerview.SectionRecyclerViewAdapter
 import com.timkwali.epicnotes.R
 import com.timkwali.epicnotes.databinding.CalendarBodyItemBinding
 import com.timkwali.epicnotes.databinding.CalendarHeaderItemBinding
-import com.timkwali.epicnotes.databinding.FragmentCalendarBinding
 import com.timkwali.epicnotes.domain.model.Task
+import com.timkwali.epicnotes.presentation.adapter.TaskSection
 
 class CalendarAdapter(
     private val context: Context,
