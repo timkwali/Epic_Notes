@@ -28,7 +28,6 @@ class HomeFragment : Fragment(), ClickListener<Task> {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var tasksRvAdapter: TasksRvAdapter
     private val viewModel: TasksViewModel by activityViewModels()
-    private var tasksList = listOf<Task>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -46,13 +45,11 @@ class HomeFragment : Fragment(), ClickListener<Task> {
                 if(!it.isNullOrEmpty()) {
                     val tasksDate = setUpDate(it[0].date)
                     date.text = tasksDate
-                    tasksList = it
 
-                    tasksRvAdapter = TasksRvAdapter(tasksList, this@HomeFragment)
+                    tasksRvAdapter = TasksRvAdapter(it, this@HomeFragment)
                     notesRv.layoutManager = LinearLayoutManager(requireContext())
                     notesRv.setHasFixedSize(true)
                     notesRv.adapter = tasksRvAdapter
-                    notesRv.adapter?.notifyDataSetChanged()
                     updateTask(ItemTouchHelper.RIGHT)
                     updateTask(ItemTouchHelper.LEFT)
                 }
@@ -73,7 +70,6 @@ class HomeFragment : Fragment(), ClickListener<Task> {
                 viewModel.updateTask(task)
                 val message = if(swipeDirection == ItemTouchHelper.RIGHT) "Task completed!" else "Task not completed!"
                 showSnackBar(message)
-                tasksList = emptyList()
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeGesture)
