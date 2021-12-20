@@ -48,7 +48,7 @@ class HomeFragment : Fragment(), ClickListener<Task> {
 
                     tasksRvAdapter = TasksRvAdapter(it, this@HomeFragment)
                     notesRv.layoutManager = LinearLayoutManager(requireContext())
-                    notesRv.setHasFixedSize(true)
+                    notesRv.setHasFixedSize(false)
                     notesRv.adapter = tasksRvAdapter
                     updateTask(ItemTouchHelper.RIGHT)
                     updateTask(ItemTouchHelper.LEFT)

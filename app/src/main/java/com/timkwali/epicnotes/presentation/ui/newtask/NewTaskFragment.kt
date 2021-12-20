@@ -57,14 +57,24 @@ class NewTaskFragment : Fragment() {
     }
 
     private fun setUpDate() {
-        binding.dateTv.setOnClickListener {
-            Utils.showDatePicker(parentFragmentManager, getString(R.string.date), binding.dateTv)
+        binding.apply {
+            dateTv.setOnClickListener {
+                Utils.showDatePicker(parentFragmentManager, getString(R.string.date), binding.dateTv)
+            }
+            dateIv.setOnClickListener {
+                Utils.showDatePicker(parentFragmentManager, getString(R.string.date), binding.dateTv)
+            }
         }
     }
 
     private fun setUpAlarm() {
-        binding.alarmTv.setOnClickListener {
-            showTimePicker(parentFragmentManager, getString(R.string.time), binding.alarmTv)
+        binding.apply {
+            alarmTv.setOnClickListener {
+                showTimePicker(parentFragmentManager, getString(R.string.time), binding.alarmTv)
+            }
+            alarmIv.setOnClickListener {
+                showTimePicker(parentFragmentManager, getString(R.string.time), binding.alarmTv)
+            }
         }
     }
 
