@@ -39,7 +39,7 @@ class HomeFragment : Fragment(), ClickListener<Task> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            viewModel.oldestTasks.observe(viewLifecycleOwner, {
+            viewModel.allTasks.observe(viewLifecycleOwner, {
                 noTasksTv.isVisible = it.isNullOrEmpty()
                 date.isVisible = !it.isNullOrEmpty()
                 if(!it.isNullOrEmpty()) {
